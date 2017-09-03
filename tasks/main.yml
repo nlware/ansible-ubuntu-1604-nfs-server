@@ -1,0 +1,26 @@
+# tasks file for ubuntu-1604-nfs-server
+---
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ ubuntu_1604_nfs_server_dependencies }}"
+
+- name: install
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ ubuntu_1604_nfs_server_install }}"
+
+- name: configure exports
+  lineinfile:
+    dest: /etc/exports
+    regexp: "^{{ item.path }}\\s"
+    line: "{{ item.path }} {{ item.host }}({{ item.options }})"
+  with_items: "{{ ubuntu_1604_nfs_server_exports }}"
+  notify: restart nfs
+
+- name: configure firewall
+  ufw:
+    rule: allow
+    to_port: 2049
+    protocol: tcp
+  notify: reload ufw

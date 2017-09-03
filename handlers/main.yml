@@ -1,0 +1,10 @@
+# handlers file for ubuntu-1604-nfs-server
+---
+- name: restart nfs
+  service:
+    name: nfs-kernel-server
+    state: restarted
+
+- name: reload ufw
+  ufw:
+    state: reloaded
