@@ -11,6 +11,18 @@ Set up NFS server on Ubuntu 16.04.
 * `ubuntu_1604_nfs_server_exports.{n}.host.`:
 * `ubuntu_1604_nfs_server_exports.{n}.options.`:
 
-## Dependencies
+#### Examples
 
-None
+##### Simple (share home-directories)
+
+```yaml
+---
+- hosts: all
+  roles:
+    - ubuntu-1604-nfs-server
+  vars:
+    ubuntu_1604_nfs_server_exports:
+      - path: /home
+        host: myhost
+        options: rw,sync,no_root_squash,no_subtree_check
+```
