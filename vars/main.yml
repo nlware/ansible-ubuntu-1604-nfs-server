@@ -1,0 +1,4 @@
+# vars file for ubuntu-1604-nfs-server
+---
+ubuntu_1604_nfs_server_dependencies:
+  - nfs-kernel-server

@@ -1,0 +1,5 @@
+# defaults file for ubuntu-1604-nfs-server
+---
+ubuntu_1604_nfs_server_install: []
+
+ubuntu_1604_nfs_server_exports: []
